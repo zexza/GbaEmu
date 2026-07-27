@@ -4,11 +4,7 @@ plugins {
 
 android {
     namespace = "com.maxi.gbaemu"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.maxi.gbaemu"
@@ -21,15 +17,14 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags += "-std=c++17"
+                abiFilters += listOf("arm64-v8a", "armeabi-v7a")
             }
         }
     }
 
     buildTypes {
         release {
-            optimization {
-                enable = false
-            }
+            isMinifyEnabled = false
         }
     }
     compileOptions {
